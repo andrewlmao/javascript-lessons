@@ -1,0 +1,287 @@
+\documentclass{beamer}
+\title{Day 1: Introduction}
+\author{Andrew Luo}
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=white,
+	urlcolor=blue,
+}
+
+
+
+\usetheme{Berkeley}
+% adding javascript language capabilities for code snippets
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\lstdefinelanguage{JavaScript}{
+  keywords={let, break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{darkgray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+\begin{document}
+\maketitle
+\begin{frame}
+\frametitle{Contact}
+\begin{itemize}
+\item{\href{mailto:andrew.luo25@gmail.com}{andrew.luo25@gmail.com}}
+\item{Go to my GitHub Slides for lesson slides}
+	\begin{itemize}
+		\item{\url{https://github.com/andrewlmao/javascript-lessons}}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Materials}
+\begin{itemize}
+	\item{Notebook for taking notes}
+	\begin{itemize}
+		\item{We will be writing some code by hand to better keep it in memory}
+	\end{itemize}
+	\item{CodingRooms Account}
+		\begin{enumerate}
+			\item{Go to \url{https://www.codingrooms.com/}}
+			\item{Click "Sign Up" in the top right corner}
+		\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is Programming?}
+\begin{itemize}
+\item{the act of constructing a program}
+	\begin{itemize}
+		\item a \emph{program} is a set of instructions telling a computer what to do
+		\item {allows us to do things in seconds that would normally take forever by hand}
+	\end{itemize}
+\item{a \emph{programming language} is a  constructed language used to communicate with computers}
+	\begin{itemize}
+		\item easier for humans to read
+		\item a \emph{low-level language} is closest to the commands and functions that processor understands
+			\begin{itemize}
+				\item ex. the lowest level language is machine code (binary)
+			\end{itemize}
+		\item a \emph{high-level language} abstracts from the details of the  computer
+			\begin{itemize}
+				\item {closer to human language and semantics}
+				\item {not understood by the computer}
+				\item ex. Java, C++, Python
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Compiling vs. Interpreter}
+\begin{itemize}
+	\item {the job of a \emph{compiler} is to translate a high level language into machine code that the computer understands}	
+	\begin{itemize}
+		\item the programmer creates \emph{source code} file in a high-level language
+		\item the source code is then passed to a compiler, which produces machine code (known as a \emph{binary})
+		\item{examples include Java, C++}
+	\end{itemize}
+	\item{the job of an \emph{intepreter} is to interpret each line of code into language that the computer understands}
+	\begin{itemize}
+		\item there is no source code
+		\item the interpreter acts as a middle person
+		\item slower than compiled languages
+		\item {examples include Python and Javascript}
+		\item browsers contain Javascript interpreters that can run Javascript
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What is Javascript?}
+	\begin{itemize}
+		\item {one of the three fundamental technologies of the web}
+			\begin{itemize}
+				\item{Javascript}
+				\item{HTML (HyperText Markup Language)}
+				\item{CSS (Cascading Style Sheets)}
+			\end{itemize}
+		\item{think of modern websites as a house}
+			\begin{itemize}
+				\item HTML gives structure to websites, like the frame of a house
+				\item CSS gives style to websites, like the paint of a house
+				\item Javascript makes websites dynamic (can change), like doors and windows that can open and close
+			\end{itemize}
+		\item{originally written for adding programs to Netscape Browser in 1995}
+		\item has nothing to do with Java
+		\item implementation of the ECMAScript standard to ensure compatibility between different browsers
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Hello World}
+\begin{itemize}
+	\item Write the following into your editor
+	\item \begin{lstlisting}
+console.log("Hello World");
+\end{lstlisting}
+
+\end{itemize}
+\begin{itemize}
+	\item this prints "Hello World" into the console
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{console.log()}
+\begin{itemize}
+	\item prints whatever is passed into the parentheses into standard output
+	\item we will elaborate on functions later
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Declaring and Initializing Variables}
+\begin{itemize}
+\item a \emph{variable} holds a particular value
+\item each variable has a type and name
+\item variables are \emph{dynamically type}
+	\begin{itemize}
+		\item Javascript automatically defines the type
+		\item you only have to give a name
+	\end{itemize}
+
+\end{itemize}
+\begin{lstlisting}
+let myVariable = 1;
+\end{lstlisting}
+\begin{itemize}
+	\item \emph{let, const, and var} are keywords that create a variable
+	\item \emph{myVariable} is the variable name
+	\item \emph{=} is the assignment operator
+	\item the number 1 is being assigned to myVariable
+	\item every statement in Javascript ends with semicolon ; or nothing
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Var, Const, Let}
+\begin{itemize}
+	\item \emph{var} is a global scope variable
+	\item \emph{const} is a variable whose value cannot change after being initialized
+	\item \emph{let} is a block scope variable
+		\begin{itemize}
+			\item blocks are denoted by curly braces \{\}
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data Types}
+\begin{itemize}
+	\item number
+	\item string
+		\begin{itemize}
+			\item{denoted by quotation marks}
+		\end{itemize}
+	\item object
+	\item symbol
+	\item boolean
+		\begin{itemize}
+			\item {true or false}
+		\end{itemize}
+	\item null
+		\begin{itemize}
+			\item means no value 
+		\end{itemize}
+	\item undefined
+		\begin{itemize}
+			\item variable has been defined but not initalized
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Math Operations}
+\begin{itemize}
+	\item +
+	\item -
+	\item *
+		\begin{itemize}
+			\item multiplication
+		\end{itemize}
+	\item /
+		\begin{itemize}
+			\item division
+		\end{itemize}
+	\item \%
+		\begin{itemize}
+			\item modulus
+			\item means remainder
+			\item ex. 6 \% 4 = 2
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{String Concatenation}
+\begin{itemize}
+	\item you can use the + operator to concatenate two strings
+	\item \begin{lstlisting} 
+	let myString = "Andrew" + "Luo" 
+		\end{lstlisting}
+	\item you can even use the + operator to add strings with 
+		\begin{itemize}
+			\item objects
+			\item numbers
+			\item null
+			\item undefined
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Comments}
+\begin{itemize}
+	\item one line comments use //
+	\item multiline comments use /* */
+\end{itemize}
+\begin{lstlisting}
+// This is a single line comment
+/*
+This is a 
+multiline
+comment
+*/
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sources}
+\begin{itemize}
+	\item{Eloquent Javascript 3rd Edition by Marijn Haverbeke}
+\end{itemize}
+\end{frame}
+\end{document}

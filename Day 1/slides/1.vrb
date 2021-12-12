@@ -1,0 +1,13 @@
+\frametitle{Comments}
+\begin{itemize}
+	\item one line comments use //
+	\item multiline comments use /* */
+\end{itemize}
+\begin{lstlisting}
+// This is a single line comment
+/*
+This is a
+multiline
+comment
+*/
+\end{lstlisting}
