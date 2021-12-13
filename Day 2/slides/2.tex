@@ -1,0 +1,359 @@
+\documentclass{beamer}
+\title{Day 2: Conditionals, Loops, Basic Functions}
+\author{Andrew Luo}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{upquote}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=white,
+	urlcolor=blue,
+}
+
+
+
+\usetheme{Berkeley}
+% adding javascript language capabilities for code snippets
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\lstdefinelanguage{JavaScript}{
+  keywords={let, break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{darkgray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+\begin{document}
+\maketitle
+\begin{frame}
+\frametitle{Variable Names}
+\begin{itemize}
+	\item names cannot start with a digit
+		\begin{itemize}
+			\item ex. 95Andrew is illegal variable name
+		\end{itemize}
+	\item may include dollar signs (\$) and underscores (\_) but no other special characters
+	\item cannot include keywords
+		\begin{itemize}
+			\item ex. let, var, const
+		\end{itemize}
+	\item usually use camelCase by convention
+		\begin{itemize}
+			\item first letter is lowercase and all others are uppercase
+			\item ex. andrewLuoIsCool
+		\end{itemize}
+\end{itemize}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale=0.08]{camelCase.png}}
+	\caption{camelCase makes variable names look like the shape of a camel's back}
+	\label{Fig 1}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{String Escape Characters}
+\begin{itemize}
+	\item create a line break with \textbackslash n 
+	\item \begin{lstlisting}
+	console.log("Hello \n World");
+	// outputs -> Hello
+	//            World
+	\end{lstlisting}
+	\item create a tab with \textbackslash t
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Template Literal}
+\begin{itemize}
+	\item use \`{} \`{} backticks, then you can insert expressions into strings using \$\{\} 
+	\item ex. \begin{lstlisting}
+	let myName = "Bob";
+	console.log(`Hello ${myName}`);
+	// will output -> Hello Bob
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparison Operators}
+\begin{itemize}
+	\item an \emph{expression} is a statement that takes in multiple values and produces a new value
+	\item comparison expressions produce either true or false
+	\item \(>\)  
+	\item \(<\)
+	\item \(>\)= 
+	\item \(<\)=
+	\item ==
+		\begin{itemize}
+			\item only checks if values are the same 
+			\item ex. 5 == "5" will return true
+		\end{itemize}
+	\item ===
+		\begin{itemize}
+			\item checks if both value and types are the same
+			\item ex. 5 === "5" will return false
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparing Strings}
+\begin{itemize}
+	\item strings can be compared
+	\item the order is roughly alphabetic
+	\item lowercase always comes before uppercase
+	\item compares each letter one by one
+	\item ex. happy comes before Happy, but after hapoy
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Type Coercion}
+\begin{itemize}
+	\item when comparing two things of different type, Javascript converts them into the same type
+	\item NaN
+		\begin{itemize}
+			\item Not a Number
+		\end{itemize}
+	\item you can also test if a variable actually holds a value
+	\item ex. \begin{lstlisting}
+	let myVariable;
+	console.log(myVariable == undefined);
+	// returns true because myVariable has not been initialized
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Logical Operators}
+\begin{itemize}
+	\item \&\&
+		\begin{itemize}
+			\item "and"
+			\item evaluates to true if both operands are true
+		\end{itemize}
+	\item \textbar \textbar
+		\begin{itemize}
+			\item "or"
+			\item evaluates to true if one of the operands is true
+		\end{itemize}
+	\item !
+		\begin{itemize}
+			\item "not"
+			\item evaluates to true if the operand is false
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Short Circuit Evaluation}
+\begin{itemize}
+	\item for \textbar \textbar ,if the first operand is true, then the second operand will not be evaluated
+	\item for \$\$ ,if the first operand is false, then the second operand will not be evaluated
+	\item use this behaviour to create a fallback to default value
+		\begin{itemize}
+			\item "console.log(null \textbar "Hello")"
+			\item will fall back to "Hello"
+			\item 0, NaN,undefined,null and empty string "" will evaluate to false
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Unary, Binary, Ternary Operators}
+\begin{itemize}
+	\item an \emph{operand} is a variable which is taken by an operation
+	\item unary operators only have 1 operand
+		\begin{itemize}
+			\item ex. typeof operator
+			\item \begin{lstlisting}
+			let myVarible = "Andrew";
+			console.log(typeof myVariable);
+			// will output -> string
+				\end{lstlisting}
+		\end{itemize}
+	\item ternary operators have 3 operands
+		\begin{itemize}
+			\item \begin{lstlisting}
+			condition ? if true : if false	
+			\end{lstlisting}
+		\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Conditional Execution}
+\begin{itemize}
+	\item if, else statements
+	\item form: \begin{lstlisting}
+	if (expression) {
+	//executes if true
+	}
+	else {
+	//executes if false
+	}
+	\end{lstlisting}
+	\item if, else if statements
+	\item form: \begin{lstlisting} 
+	if (expression1) {
+	//executes if expression is true
+	}
+	else if (expression2) {
+	//executes if expression 1 is false and expression 2 is true
+	}
+	else {execuetes if 1 and 2 are false} 
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{While Loop}
+\begin{itemize}
+	\item continues executing until expression is false
+	\item you need to put an updating statement in the body that eventually makes the expression false
+	\item failure to do so leads to an \emph{infinite loop}
+	\item ex. \begin{lstlisting}
+		let i = 0;
+		while (i < 10)
+		{
+			console.log("Hello World");
+			i = i + 1;
+		}
+		// how many times does this output hello world?
+		\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Do While Loop}
+\begin{itemize}
+	\item same as while loop but the loop executes at least once, updating statement happens at the end of the loop body
+	\item ex. \begin{lstlisting}
+	let i = 0;
+	do {
+		console.log("Hello");
+		i = i + 1;
+	}
+	while (i < 0);
+	// still prints Hello once
+	\end{lstlisting}
+\item notice how you want to indent your code for easy readability
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{For Loop}
+\begin{itemize}
+	\item useful when you know how many times you want to iterate (repeat)
+	\item \begin{lstlisting}
+	for (let i = 0; i < 10; i++){
+		console.log("Hello World");
+	}
+	// prints "Hello World" 9 times
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Incrementing and Decrementing}
+\begin{itemize}
+	\item i = i + 1 is known as \emph{incrementing} the variable i
+		\begin{itemize}
+			\item incrementing is increasing the numeric value by 1
+			\item decrementing is decreasing the numeric value by 1
+		\end{itemize}
+	\item there are shortcuts for incrementing and decrementing
+	\item i += 1
+	\item i++
+	\item i -= 1
+	\item i - -
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions}
+\begin{itemize}
+	\item the purpose of functions are to keep your code DRY ("Don't Repeat Yourself")
+	\item code snippets that are reusable through code
+	\item there are two ways of making functions
+	\begin{itemize}
+		\item Old Way
+		\item \begin{lstlisting}
+		function myFunction() {
+		// function body
+		}
+		\end{lstlisting}
+	\item New Way: ES6 Functions
+	\item \begin{lstlisting}
+	let myFunction = () => {
+	//function body
+	}
+	\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Parameters and Arguments}
+	\begin{itemize}
+		\item you can pass values to a function using\emph{arguments} when you invoke the function
+		\item the function receives the arguments as \emph{parameters}
+		\item you need to specify what the function receives between the parentheses of the declaration
+		\item ex. \begin{lstlisting}
+		function hello(name) {
+			console.log(`Hello ${name}`);
+		}
+
+		//later I invoke the function using ()
+		hello("Andrew");
+		// prints "Hello Andrew"
+		\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Return Value}
+	\begin{itemize}
+		\item when the function is invoked, it can return a value
+		\item ex. \begin{lstlisting}
+		function hello(name) {
+			return `Hello ${name}`;
+		}
+		//later I invoke the function, but I then can store the return value into another variable
+
+		let returnValue = hello("Andrew");
+		console.log(returnValue);
+		// prints "Hello Andrew"
+		\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+\end{document}

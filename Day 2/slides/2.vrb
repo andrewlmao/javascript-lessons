@@ -1,0 +1,14 @@
+\frametitle{Return Value}
+	\begin{itemize}
+		\item when the function is invoked, it can return a value
+		\item ex. \begin{lstlisting}
+		function hello(name) {
+			return `Hello ${name}`;
+		}
+		//later I invoke the function, but I then can store the return value into another variable
+
+		let returnValue = hello("Andrew");
+		console.log(returnValue);
+		// prints "Hello Andrew"
+		\end{lstlisting}
+	\end{itemize}
